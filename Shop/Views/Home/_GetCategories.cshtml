@@ -1,0 +1,17 @@
+﻿@model List<Shop.Models.Category>
+
+<div style="border:1px solid lightgray; border-radius:7px; float:right; padding:10px;">
+    <h3>Kategorije</h3>
+    <hr />
+    <ul style="list-style:none;">
+        @foreach (var x in Model)
+        {
+            <li>
+                <b>
+                    @Html.ActionLink(x.Name, "GetProducts", new { categoryId = x.Id })
+                </b>
+            </li>
+            <hr />
+        }
+    </ul>
+</div>

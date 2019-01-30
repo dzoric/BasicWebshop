@@ -1,0 +1,71 @@
+﻿@using Shop.Models
+
+<h2>Košarica</h2>
+<p>Sadržaj vaše košarice:</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Proizvod
+            </th>
+            <th>
+                Količina
+            </th>
+            <th>
+                Ukupno
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            decimal sum = 0;
+        }
+
+        @foreach (var item in (List<Item>)Session["cart"])
+        {
+            <tr>
+                <td>
+                    @item.Product.Name
+                </td>
+                <td>
+                    @item.Count
+                </td>
+                @if (item.Product.Discount)
+                {
+                    sum += (item.Product.DiscountPrice * item.Count);
+                    <td>
+                        @(item.Product.DiscountPrice * item.Count)
+                    </td>
+                }
+                else
+                {
+                    sum += (item.Product.Price * item.Count);
+                    <td>
+                        @(item.Product.Price * item.Count)
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("-", "DecreaseCount", "ShoppingCart", new { productId = item.Product.Id }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("+", "IncreaseCount", "ShoppingCart", new { productId = item.Product.Id }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Ukloni", "Remove", "ShoppingCart", new { productId = item.Product.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                Ukupni iznos:
+            </td>
+            <td>
+                @sum
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@Html.ActionLink("Naruči","Checkout","ShoppingCart",null, new { @class="btn btn-danger"})

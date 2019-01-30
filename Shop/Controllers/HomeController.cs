@@ -40,6 +40,12 @@ namespace Shop.Controllers
             return PartialView(product);
         }
 
+        public ActionResult Details(int Id)
+        {
+            var product = db.Products.Find(Id);
+            return View(product);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -1,0 +1,28 @@
+﻿@model Shop.Models.AddressInformation
+@{
+    ViewBag.Title = "Checkout";
+}
+
+@using (Html.BeginForm("Checkout", "ShoppingCart", FormMethod.Post))
+{
+    @Html.Label("Ime:")
+    @Html.TextBoxFor(m => m.FirstName)
+    <br />
+    @Html.Label("Prezime:")
+    @Html.TextBoxFor(m => m.LastName)
+    <br />
+    @Html.Label("Adresa:")
+    @Html.TextBoxFor(m => m.Address)
+    <br />
+    @Html.Label("Grad:")
+    @Html.TextBoxFor(m => m.City)
+    <br />
+    @Html.Label("Poštanski broj:")
+    @Html.TextBoxFor(m => m.ZipCode)
+    <br />
+    @Html.Label("Broj telefona:")
+    @Html.TextBoxFor(m => m.PhoneNumber)
+    <br />
+    <input type="submit" value="Naruči" class="btn btn-danger" />
+}
+

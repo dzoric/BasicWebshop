@@ -26,7 +26,7 @@
 
     <div class="col-md-4" style="padding:15px">
         <div class="thumbnail">
-            <a href="@product.ImageUrl">
+            <a href="@Url.Action("Details", "Home", new { Id = product.Id})">
                 <img src="@product.ImageUrl" alt="Lights" style="width:100%">
                 <div style="position:absolute;top:15px;right:20px;">
                     @if (product.Discount)
@@ -48,7 +48,7 @@
                 </div>
             </a>
             <div class="text-right" style="margin-right:5px;margin-bottom:5px;">
-                <a href="@Url.Action("AddToCart", new { productId=product.Id})">
+                <a href="@Url.Action("AddToCart","ShoppingCart", new { productId=product.Id})">
                     <div class="btn btn-danger">
                         <span class="glyphicon glyphicon-shopping-cart">
                             U košaricu

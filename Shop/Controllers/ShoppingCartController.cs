@@ -95,12 +95,13 @@ namespace Shop.Controllers
         public ActionResult Checkout(AddressInformation information)
         {
             SmtpClient client = new SmtpClient();
-            client.Port = 2525;
-            client.Host = "mail.visio-inventum.hr";
+            client.Port = 587;
+            client.Host = "smtp.gmail.com";
             client.Timeout = 10000;
+            client.EnableSsl = true;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("tecaj@visio-inventum.hr", "T3cajtecaj");
+            client.Credentials = new NetworkCredential("tecajskimail@gmail.com", "T3cajtecaj");
 
             string mailMessage = "Nova narudžba je zaprimljena!" +
                 " Kupac:" + information.FirstName + " " + information.LastName + Environment.NewLine;
@@ -121,7 +122,7 @@ namespace Shop.Controllers
             }
             mailMessage += "Ukupni iznos narudžbe: " + total;
 
-            MailMessage message = new MailMessage("tecaj@visio-inventum.hr", "dusan8@ymail.com", "Narudžba", mailMessage);
+            MailMessage message = new MailMessage("tecajskimail@gmail.com", "dusan8@ymail.com", "Narudžba", mailMessage);
 
             message.BodyEncoding = UTF8Encoding.UTF8;
             message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;

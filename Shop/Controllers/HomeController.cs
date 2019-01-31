@@ -46,6 +46,11 @@ namespace Shop.Controllers
             return View(product);
         }
 
+        public ActionResult _GetAdminMenu()
+        {
+            return PartialView();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

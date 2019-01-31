@@ -10,6 +10,7 @@ using Shop.Models;
 
 namespace Shop.Controllers
 {
+    [Authorize(Users = "admin@admin.com")]
     public class ProductsController : Controller
     {
         private ShopContext db = new ShopContext();

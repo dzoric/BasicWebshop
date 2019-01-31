@@ -103,8 +103,10 @@ namespace Shop.Controllers
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential("tecajskimail@gmail.com", "T3cajtecaj");
 
-            string mailMessage = "Nova narudžba je zaprimljena!" +
-                " Kupac:" + information.FirstName + " " + information.LastName + Environment.NewLine;
+            string mailMessage = "Nova narudžba je zaprimljena!" + Environment.NewLine +
+                " Kupac:" + information.FirstName + " " + information.LastName + Environment.NewLine
+                + "Adresa: " + Environment.NewLine + information.City + Environment.NewLine + information.Address
+                + Environment.NewLine + information.ZipCode + Environment.NewLine + information.PhoneNumber + Environment.NewLine;
             var products = (List<Item>)Session["cart"];
             decimal total = 0;
             foreach(var product in products)

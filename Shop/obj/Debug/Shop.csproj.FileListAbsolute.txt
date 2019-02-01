@@ -125,3 +125,4 @@ C:\Users\Dusan\source\repos\Shop\Shop\bin\PagedList.Mvc.xml
 C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.Migrations.InitialCreate.resources
 C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.cache
 C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.Migrations.AddedSortPricepropertytoProductmodel.resources
+C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.Migrations.RemovedSortPrice.resources

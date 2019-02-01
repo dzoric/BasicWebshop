@@ -1,17 +1,15 @@
 ﻿@model List<Shop.Models.Category>
 
-<div style="border:1px solid lightgray; border-radius:7px; float:right; padding:10px;">
+
+<div class="text-center" style="border:1px solid lightgray; border-radius:7px;">
     <h3>Kategorije</h3>
     <hr />
-    <ul style="list-style:none;">
+    <ul class="nav nav-pills nav-stacked" style="list-style:none;">
         @foreach (var x in Model)
         {
-            <li>
-                <b>
-                    @Html.ActionLink(x.Name, "GetProducts", new { categoryId = x.Id })
-                </b>
+            <li role="presentation">
+                <a href="@Url.Action("GetProducts", new { categoryId = x.Id})" style="font-size:1.8rem; padding-top:15px; padding-bottom:15px;">@x.Name</a>
             </li>
-            <hr />
         }
     </ul>
 </div>

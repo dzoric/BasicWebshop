@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Shop.Models
 {
@@ -27,6 +28,8 @@ namespace Shop.Models
         public bool Available { get; set; }
         [Display(Name = "Novi proizvod")]
         public bool NewProduct { get; set; }
+        
+        public decimal SortPrice { get; set; }
 
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }

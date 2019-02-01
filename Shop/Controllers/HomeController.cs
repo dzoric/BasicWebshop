@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Shop.Controllers
 {
@@ -22,11 +24,78 @@ namespace Shop.Controllers
             return PartialView(Categories);
         }
 
-        public ActionResult GetProducts(int categoryId)
+        public ActionResult GetProducts(int categoryId, int? page, string orderBy)
         {
-            var Products = db.Products.Where(x => x.CategoryId == categoryId).ToList();
+            var Products = db.Products.Where(x => x.CategoryId == categoryId).AsQueryable();
 
-            return View(Products);
+            foreach (var item in Products)
+            {
+                if (item.Discount == true)
+                {
+                    item.SortPrice = item.DiscountPrice;
+                }
+                else
+                {
+                    item.SortPrice = item.Price;
+                }
+            }
+
+            switch (orderBy)
+            {
+                case "NameDesc":
+                    Products = Products.OrderByDescending(p => p.Name);
+                    break;
+                case "Price":
+                    Products = Products.OrderBy(p => p.SortPrice);
+                    break;
+                case "PriceDesc":
+                    Products = Products.OrderByDescending(p => p.SortPrice);
+                    break;
+                default:
+                    Products = Products.OrderBy(p => p.Name);
+                    break;
+            }
+
+            return View(Products.ToList().ToPagedList(page ?? 1, 3));
+        }
+
+        public ActionResult SearchAllProducts(int? page, string search, string orderBy)
+        {
+            var Products = db.Products.AsQueryable();
+            if (string.IsNullOrEmpty(search) == false)
+            {
+                Products = Products.Where(p => p.Name.ToLower().StartsWith(search.ToLower()) || p.Description.ToLower().Contains(search.ToLower()));
+            }
+
+            foreach (var item in Products)
+            {
+                if (item.Discount == true)
+                {
+                    item.SortPrice = item.DiscountPrice;
+                }
+                else
+                {
+                    item.SortPrice = item.Price;
+                }
+            }
+
+            switch (orderBy)
+            {
+                case "NameDesc":
+                    Products = Products.OrderByDescending(p => p.Name);
+                    break;
+                case "Price":
+                    Products = Products.OrderBy(p => p.SortPrice);
+                    break;
+                case "PriceDesc":
+                    Products = Products.OrderByDescending(p => p.SortPrice);
+                    break;
+                default:
+                    Products = Products.OrderBy(p => p.Name);
+                    break;
+            }
+
+            return View(Products.ToList().ToPagedList(page ?? 1, 3));
         }
 
         public ActionResult _GetRandomDiscountedProduct()
@@ -47,6 +116,11 @@ namespace Shop.Controllers
         }
 
         public ActionResult _GetAdminMenu()
+        {
+            return PartialView();
+        }
+
+        public ActionResult _Search()
         {
             return PartialView();
         }

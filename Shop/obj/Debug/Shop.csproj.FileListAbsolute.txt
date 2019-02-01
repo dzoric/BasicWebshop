@@ -118,3 +118,10 @@ C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.csproj.CoreCompileInputs.ca
 C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.csproj.CopyComplete
 C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.dll
 C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.pdb
+C:\Users\Dusan\source\repos\Shop\Shop\bin\PagedList.dll
+C:\Users\Dusan\source\repos\Shop\Shop\bin\PagedList.Mvc.dll
+C:\Users\Dusan\source\repos\Shop\Shop\bin\PagedList.xml
+C:\Users\Dusan\source\repos\Shop\Shop\bin\PagedList.Mvc.xml
+C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.Migrations.InitialCreate.resources
+C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.cache
+C:\Users\Dusan\source\repos\Shop\Shop\obj\Debug\Shop.Migrations.AddedSortPricepropertytoProductmodel.resources

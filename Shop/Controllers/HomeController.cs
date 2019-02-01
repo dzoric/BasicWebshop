@@ -27,29 +27,17 @@ namespace Shop.Controllers
         public ActionResult GetProducts(int categoryId, int? page, string orderBy)
         {
             var Products = db.Products.Where(x => x.CategoryId == categoryId).AsQueryable();
-
-            foreach (var item in Products)
-            {
-                if (item.Discount == true)
-                {
-                    item.SortPrice = item.DiscountPrice;
-                }
-                else
-                {
-                    item.SortPrice = item.Price;
-                }
-            }
-
+            
             switch (orderBy)
             {
                 case "NameDesc":
                     Products = Products.OrderByDescending(p => p.Name);
                     break;
                 case "Price":
-                    Products = Products.OrderBy(p => p.SortPrice);
+                    Products = Products.OrderBy(p => p.Discount == true ? p.DiscountPrice : p.Price);
                     break;
                 case "PriceDesc":
-                    Products = Products.OrderByDescending(p => p.SortPrice);
+                    Products = Products.OrderByDescending(p => p.Discount == true ? p.DiscountPrice : p.Price);
                     break;
                 default:
                     Products = Products.OrderBy(p => p.Name);
@@ -67,28 +55,16 @@ namespace Shop.Controllers
                 Products = Products.Where(p => p.Name.ToLower().StartsWith(search.ToLower()) || p.Description.ToLower().Contains(search.ToLower()));
             }
 
-            foreach (var item in Products)
-            {
-                if (item.Discount == true)
-                {
-                    item.SortPrice = item.DiscountPrice;
-                }
-                else
-                {
-                    item.SortPrice = item.Price;
-                }
-            }
-
             switch (orderBy)
             {
                 case "NameDesc":
                     Products = Products.OrderByDescending(p => p.Name);
                     break;
                 case "Price":
-                    Products = Products.OrderBy(p => p.SortPrice);
+                    Products = Products.OrderBy(p => p.Discount == true ? p.DiscountPrice : p.Price);
                     break;
                 case "PriceDesc":
-                    Products = Products.OrderByDescending(p => p.SortPrice);
+                    Products = Products.OrderByDescending(p => p.Discount == true ? p.DiscountPrice : p.Price);
                     break;
                 default:
                     Products = Products.OrderBy(p => p.Name);

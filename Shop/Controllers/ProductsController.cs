@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,10 +50,16 @@ namespace Shop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,Discount,DiscountPrice,ImageUrl,Warranty,Available,NewProduct,CategoryId")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,Discount,DiscountPrice,ImageUrl,Warranty,Available,NewProduct,CategoryId")] Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    string path = Path.Combine(Server.MapPath("~/ProductImages"), Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    product.ImageUrl = "~/ProductImages/" + Path.GetFileName(file.FileName);
+                }
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,10 +90,16 @@ namespace Shop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,Discount,DiscountPrice,ImageUrl,Warranty,Available,NewProduct,CategoryId")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,Discount,DiscountPrice,ImageUrl,Warranty,Available,NewProduct,CategoryId")] Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    string path = Path.Combine(Server.MapPath("~/ProductImages"), Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    product.ImageUrl = "~/ProductImages/" + Path.GetFileName(file.FileName);
+                }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -101,6 +101,11 @@ namespace Shop.Controllers
             return PartialView();
         }
 
+        public ActionResult _GetCartCount()
+        {
+            return PartialView();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

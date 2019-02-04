@@ -9,6 +9,14 @@
 
 </head>
 <body>
+    <style>
+        #navFix {
+            display: -webkit-box;
+        }
+        #collapseFix{
+            display:contents !important;
+        }
+    </style>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -19,19 +27,18 @@
                 </button>
                 @Html.ActionLink("Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <div class="row">
+            <div class="navbar-collapse collapse" id="collapseFix">
+                <div class="row" id="navFix">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Naslovnica", "Index", "Home")</li>
                         @Html.Action("_GetAdminMenu", "Home")
                         <li>@Html.ActionLink("O nama", "About", "Home")</li>
                         <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Košarica", "Index", "ShoppingCart")</li>
-                    </ul>                
+                    </ul>
                     @Html.Action("_Search", "Home")
                     @Html.Partial("_LoginPartial")
+                    @Html.Action("_GetCartCount", "Home")
                 </div>
-
             </div>
         </div>
     </div>

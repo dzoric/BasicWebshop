@@ -1,7 +1,7 @@
 ﻿@model Shop.Models.Product
 
 <a href="@Url.Action("Details", "Home", new { Id = Model.Id })">
-    <img src="@Model.ImageUrl" style="width:100%" />
+    <img src="@Url.Content(Model.ImageUrl)" style="width:100%" />
     <p>@Model.Name</p>
     <p><strike>@Model.Price</strike> kn</p>
     <p>@Model.DiscountPrice kn</p>

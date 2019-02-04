@@ -314,9 +314,11 @@
     <Content Include="Views\Home\_GetAdminMenu.cshtml" />
     <Content Include="Views\Home\_Search.cshtml" />
     <Content Include="Views\Home\SearchAllProducts.cshtml" />
+    <Content Include="Views\Home\_GetCartCount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProductImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

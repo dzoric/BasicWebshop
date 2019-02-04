@@ -22,6 +22,10 @@
     .thumbnail a {
         text-decoration: none;
     }
+
+    #sortGroup{
+        display:inline-flex;
+    }
 </style>
 
 @{
@@ -39,7 +43,7 @@ new ListItem {Text ="Najskuplji prvo", Value = "PriceDesc"}
     @Html.Hidden("categoryId", Request.QueryString["categoryId"])
     <div class="row">
         <div class="col-sm-3">
-            <div class="input-group">
+            <div class="input-group" id="sortGroup">
                 @Html.DropDownList("orderBy", new SelectList(listItems, "Value", "Text"), new { @class = "form-control" })
                 <span class="input-group-btn">
                     <button class="btn btn-danger"><span class="glyphicon glyphicon-sort"></span></button>
@@ -56,7 +60,7 @@ new ListItem {Text ="Najskuplji prvo", Value = "PriceDesc"}
     <div class="col-md-4" style="padding:15px">
         <div class="thumbnail">
             <a href="@Url.Action("Details", "Home", new { Id = product.Id })">
-                <img src="@product.ImageUrl" alt="Lights" style="width:100%">
+                <img src="@Url.Content(product.ImageUrl)" alt="@product.Name" style="width:100%;">
                 <div style="position:absolute;top:15px;right:20px;">
                     @if (product.Discount)
                     {

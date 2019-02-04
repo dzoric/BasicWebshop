@@ -14,11 +14,10 @@ namespace Shop.Controllers
         ShopContext db = new ShopContext();
         public ActionResult Index()
         {
-            var lastCategory = db.Categories.ToList().OrderByDescending(x => x.Id).First().Id;
-            var rnd = new Random(DateTime.Now.Second);
-            int ticks = rnd.Next(1, lastCategory);
-            ViewBag.RandomCategory = ticks;
-            return View();
+            var lastCategory = db.Categories.ToList().OrderBy(x => x.Id).LastOrDefault().Id;
+            Random rnd = new Random(DateTime.Now.Millisecond);
+            int categoryId = rnd.Next(1, lastCategory);
+            return View(categoryId);
         }
 
         public ActionResult _GetRandomNewProduct(int categoryId)
@@ -61,7 +60,7 @@ namespace Shop.Controllers
             var Products = db.Products.AsQueryable();
             if (string.IsNullOrEmpty(search) == false)
             {
-                Products = Products.Where(p => p.Name.ToLower().StartsWith(search.ToLower()) || p.Description.ToLower().Contains(search.ToLower()));
+                Products = Products.Where(p => p.Name.ToLower().Contains(search.ToLower()) || p.Description.ToLower().Contains(search.ToLower()));
             }
 
             switch (orderBy)
@@ -114,14 +113,14 @@ namespace Shop.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Stranica koja opisuje vašu aplikaciju.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Vaša kontakt stranica.";
 
             return View();
         }

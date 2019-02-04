@@ -21,7 +21,7 @@ namespace Shop.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Data Source=SQL6002.site4now.net;Initial Catalog=DB_A44330_admin;User Id=DB_A44330_admin_admin;Password=dulesajla8;")
         {
         }
 

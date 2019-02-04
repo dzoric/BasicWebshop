@@ -1,0 +1,25 @@
+﻿@model IPagedList<Shop.Models.Product>
+
+@using PagedList;
+@using PagedList.Mvc;
+
+<style>
+    #searchbox {
+        display:inline-flex;
+    }
+</style>
+
+
+@using (Html.BeginForm("SearchAllProducts", "Home", FormMethod.Get))
+{
+    <div class="col-md-2" style="margin-top:7px">
+        <form class="navbar-form navbar-left">
+            <div class="input-group navbar-searchbox" id="searchbox">
+                @Html.TextBox("search", "", new { @class = "form-control", @placeholder = "Pretraga" })
+                <span class="input-group-btn">
+                    <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </form>
+    </div>
+}

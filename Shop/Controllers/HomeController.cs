@@ -14,20 +14,30 @@ namespace Shop.Controllers
         ShopContext db = new ShopContext();
         public ActionResult Index()
         {
+            var lastCategory = db.Categories.ToList().OrderByDescending(x => x.Id).First().Id;
+            var rnd = new Random(DateTime.Now.Second);
+            int ticks = rnd.Next(1, lastCategory);
+            ViewBag.RandomCategory = ticks;
             return View();
+        }
+
+        public ActionResult _GetRandomNewProduct(int categoryId)
+        {
+            var products = db.Products.Where(p => p.NewProduct == true && p.CategoryId == categoryId).ToList();
+            int selectedIndex = (int)(DateTime.Now.Ticks % products.Count);
+            var product = products[selectedIndex];
+            return PartialView(product);
         }
 
         public ActionResult _GetCategories()
         {
             var Categories = db.Categories.ToList();
-
             return PartialView(Categories);
         }
 
         public ActionResult GetProducts(int categoryId, int? page, string orderBy)
         {
             var Products = db.Products.Where(x => x.CategoryId == categoryId).AsQueryable();
-            
             switch (orderBy)
             {
                 case "NameDesc":
@@ -43,7 +53,6 @@ namespace Shop.Controllers
                     Products = Products.OrderBy(p => p.Name);
                     break;
             }
-
             return View(Products.ToList().ToPagedList(page ?? 1, 3));
         }
 
@@ -77,11 +86,8 @@ namespace Shop.Controllers
         public ActionResult _GetRandomDiscountedProduct()
         {
             var products = db.Products.Where(p => p.Discount == true).ToList();
-
             int selectedIndex = (int)(DateTime.Now.Ticks % products.Count);
-
             var product = products[selectedIndex];
-
             return PartialView(product);
         }
 

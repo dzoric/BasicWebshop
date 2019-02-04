@@ -315,6 +315,7 @@
     <Content Include="Views\Home\_Search.cshtml" />
     <Content Include="Views\Home\SearchAllProducts.cshtml" />
     <Content Include="Views\Home\_GetCartCount.cshtml" />
+    <Content Include="Views\Home\_GetRandomNewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

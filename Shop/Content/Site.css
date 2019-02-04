@@ -1,4 +1,25 @@
-﻿body {
+﻿@media only screen and (max-width: 767px) {
+    .collapse .row,
+    .collapsing .row {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 50px;
+    }
+
+        .collapse .row form, .collapsing .row form {
+            display: flex;
+            order: 4;
+        }
+
+            .collapse .row form .col-md-2, .collapsing .row form .col-md-2 {
+                padding: 0;
+                margin: 0;
+            }
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
